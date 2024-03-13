@@ -50,6 +50,35 @@ struct ContentView: View {
                 }//HSTACK
               
                 //SLOTMACHINE
+                VStack(alignment: .center , spacing: 0){
+                    //Reel 1
+                    ReelWithImage(imageName: "gfx-bell")
+                    HStack(alignment: .center, spacing: 0){
+                        //Reel2
+                        ReelWithImage(imageName: "gfx-seven")
+                        Spacer()
+                        //Reel3
+                        ReelWithImage(imageName: "gfx-cherry")
+                    }.frame(maxWidth: 500)
+                    //Spin Button
+                    
+                    Button(action: {
+                        print("Spin the button")
+                    }, label: {
+                        Image(.gfxSpin)
+                            .resizable()
+                            .renderingMode(.original)
+                            .modifier(ImageModifier())
+                             
+                    })
+                    
+                }//SLOTMACHINE
+                .layoutPriority(2)
+                
+                
+                
+                
+                
                 //FOOTER
                 
                 

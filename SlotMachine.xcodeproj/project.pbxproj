@@ -23,6 +23,8 @@
 		814296832BA1A160007409E6 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814296822BA1A160007409E6 /* LogoView.swift */; };
 		814296852BA1A19A007409E6 /* ShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814296842BA1A19A007409E6 /* ShadowModifier.swift */; };
 		814296872BA1A5F3007409E6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814296862BA1A5F3007409E6 /* Extension.swift */; };
+		8142968A2BA1A97E007409E6 /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814296892BA1A97E007409E6 /* ReelView.swift */; };
+		81A351632BA1AFAC00A25206 /* ReelWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351622BA1AFAC00A25206 /* ReelWithImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		814296822BA1A160007409E6 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		814296842BA1A19A007409E6 /* ShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowModifier.swift; sourceTree = "<group>"; };
 		814296862BA1A5F3007409E6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		814296892BA1A97E007409E6 /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
+		81A351622BA1AFAC00A25206 /* ReelWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelWithImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			children = (
 				814296612BA0F58D007409E6 /* ContentView.swift */,
 				814296822BA1A160007409E6 /* LogoView.swift */,
+				814296892BA1A97E007409E6 /* ReelView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 		814296882BA1A82C007409E6 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				81A351622BA1AFAC00A25206 /* ReelWithImage.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -214,6 +220,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8142968A2BA1A97E007409E6 /* ReelView.swift in Sources */,
+				81A351632BA1AFAC00A25206 /* ReelWithImage.swift in Sources */,
 				814296872BA1A5F3007409E6 /* Extension.swift in Sources */,
 				814296852BA1A19A007409E6 /* ShadowModifier.swift in Sources */,
 				814296622BA0F58D007409E6 /* ContentView.swift in Sources */,
