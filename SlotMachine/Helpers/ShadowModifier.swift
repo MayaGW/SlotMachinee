@@ -46,4 +46,39 @@ struct ImageModifier: ViewModifier{
             .modifier(ShadowModifier())
     }
 }
+struct BetNumberModifier: ViewModifier{
+    func body(content: Content) -> some View {
+        content
+            .font(.system(.title, design: .rounded))
+            .padding(.vertical,5)
+            .frame(width: 90)
+            .shadow(color: .colorTransparentBlack, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 3)
+    }
+}
+struct BetCapsulModifier: ViewModifier{
+    func body(content: Content) -> some View {
+        content
+            .background(
+            Capsule()
+                .fill(
+                    LinearGradient(gradient: Gradient(colors: [Color.colorPink, Color.colorPurple]), startPoint: .top, endPoint: .bottom)
+                )
+            ).padding(3)
+                .background(
+              Capsule()
+                .fill(
+                    LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .bottom, endPoint: .top))
+                .modifier(ShadowModifier())
+            )
+    }
+}
+struct CasinoShipsModifier: ViewModifier{
+    func body(content: Content) -> some View {
+        content
+            .scaledToFit()
+            .frame(height: 64)
+            .animation(.default)
+            .modifier(ShadowModifier())
+    }
+}
 

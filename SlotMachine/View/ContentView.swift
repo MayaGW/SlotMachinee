@@ -80,9 +80,58 @@ struct ContentView: View {
                 
                 
                 //FOOTER
-                
-                
+
                 Spacer()
+                
+                HStack{
+                    //BET20
+                    HStack (alignment:.center, spacing: 10){
+                        Button(action: {
+                            print("BET 20")
+                        }
+                               , label: {
+                            Text("20")
+                                .fontWeight(.heavy)
+                                .foregroundColor(.white)
+                                .modifier(BetNumberModifier())
+                                
+                        })
+                        .modifier(BetCapsulModifier())
+                     
+                        
+                        
+                Image(.gfxCasinoChips)
+                    .resizable()
+                    .opacity(0)
+                    .modifier(CasinoShipsModifier())
+                    }//INNER HSTACK   
+                    //BET 10
+                    HStack (alignment:.center, spacing: 10){
+                        Image(.gfxCasinoChips)
+                            .resizable()
+                            .opacity(1)
+                            .modifier(CasinoShipsModifier())
+                        
+                        
+                        Button(action: {
+                            print("BET 10")
+                        }
+                               , label: {
+                            Text("10")
+                                .fontWeight(.heavy)
+                                .foregroundColor(.yellow)
+                                .modifier(BetNumberModifier())
+                                
+                        })
+                        .modifier(BetCapsulModifier())
+                     
+                        
+                        
+                 
+                    }//INNER HSTACK
+                    Spacer()
+                    //
+                }//HSTACK
             }.overlay(
             //RESET
                 Button(action: {
