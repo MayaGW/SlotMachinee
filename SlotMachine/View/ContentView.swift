@@ -16,6 +16,9 @@ struct ContentView: View {
     @State private var highScore: Int = 0
     @State private var coins: Int = 100
     @State private var betamount: Int = 10
+    @State private var isActiveBet10: Bool = true
+    @State private var isActiveBet20: Bool = false
+    @State private var showModel : Bool = false
     //MARK: - Functioms
     //Spin the reels
     func spinReels(){
@@ -51,8 +54,24 @@ struct ContentView: View {
     func playerLoses(){
         coins -= betamount
     }
-    //GAme overe
     
+    func activateBet10(){
+        betamount = 10
+        isActiveBet20 = false
+        isActiveBet10 = true
+    }
+    func activateBet20(){
+        betamount = 20
+        isActiveBet20 = true
+        isActiveBet10 = false
+    }
+    //GAme overe
+    func isGameOver(){
+        if coins <= 0 {
+            //Show modal windows
+            showModel = true
+        }
+    }
     //MARK: - BODY
     var body: some View {
        
@@ -108,6 +127,7 @@ struct ContentView: View {
                        //Spin the reels
                         spinReels()
                         checkWinings()
+                        isGameOver()
                     }, label: {
                         Image(.gfxSpin)
                             .resizable()
@@ -131,12 +151,12 @@ struct ContentView: View {
                     //BET20
                     HStack (alignment:.center, spacing: 10){
                         Button(action: {
-                            print("BET 20")
+                           activateBet20()
                         }
                                , label: {
                             Text("20")
                                 .fontWeight(.heavy)
-                                .foregroundColor(.white)
+                                .foregroundColor( isActiveBet20 ? .yellow : .white)
                                 .modifier(BetNumberModifier())
                                 
                         })
@@ -146,24 +166,25 @@ struct ContentView: View {
                         
                 Image(.gfxCasinoChips)
                     .resizable()
-                    .opacity(0)
+                    .opacity(isActiveBet20  ? 1 : 0)
+                     
                     .modifier(CasinoShipsModifier())
                     }//INNER HSTACK   
                     //BET 10
                     HStack (alignment:.center, spacing: 10){
                         Image(.gfxCasinoChips)
                             .resizable()
-                            .opacity(1)
+                            .opacity(isActiveBet10 ? 1  : 0)
                             .modifier(CasinoShipsModifier())
                         
                         
                         Button(action: {
-                            print("BET 10")
+                            activateBet10()
                         }
                                , label: {
                             Text("10")
                                 .fontWeight(.heavy)
-                                .foregroundColor(.yellow)
+                                .foregroundColor(isActiveBet10 ? .yellow : .white)
                                 .modifier(BetNumberModifier())
                                 
                         })
@@ -197,9 +218,65 @@ struct ContentView: View {
             )
             .padding()
             .frame(maxWidth: 720)
+            .blur(radius: $showModel.wrappedValue ? 5 : 0, opaque: false)
             
             
             //POPUP
+            
+            
+            if $showModel.wrappedValue{
+                ZStack{
+                    Color(.colorTransparentBlack).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                    //Model
+                    VStack(spacing: 0){
+                        //TTLE
+                        Text("Game Over!".uppercased())
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.heavy)
+                            .padding()
+                            .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity)
+                            .background(.colorPink)
+                            .foregroundColor(.white)
+                        Spacer()
+                        //MESSAGE
+                        VStack(alignment:.center, spacing: 16){
+                            Image(.gfxSevenReel)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 72)
+                            Text("Bad Luck! you lost all the coins. \nLet's play again")
+                                .font(.system(.body, design: .rounded))
+                                .lineLimit(2)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.gray)
+                                .layoutPriority(1)
+                            
+                            Button(action: {
+                                showModel = false
+                                coins = 100
+                                
+                            }, label: {
+                                Text("New Game".uppercased())
+                                    .font(.system(.body, design: .rounded))
+                                    .fontWeight(.semibold)
+                                    .accentColor(.colorPink)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
+                                    .frame(minWidth: 128)
+                                    .background(
+                                        Capsule().stroke(lineWidth: 1.75)
+                                            .foregroundColor(.colorPink)
+                                    )
+                            })
+                        }
+                        Spacer()
+                    }//Vstack
+                    .frame(minWidth: 200, idealWidth: 280, maxWidth: 320, minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(.white)
+                    .cornerRadius(20)
+                    .shadow(color: .colorTransparentBlack, radius: 6, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 8)
+                }
+            }
         }//ZSTACK
         .sheet(isPresented: $showingInfoView, content: {
             InfoView()
