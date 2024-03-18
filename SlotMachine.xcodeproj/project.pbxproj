@@ -26,6 +26,7 @@
 		8142968A2BA1A97E007409E6 /* ReelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814296892BA1A97E007409E6 /* ReelView.swift */; };
 		81A351632BA1AFAC00A25206 /* ReelWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351622BA1AFAC00A25206 /* ReelWithImage.swift */; };
 		81A351652BA44FE600A25206 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351642BA44FE600A25206 /* InfoView.swift */; };
+		81A351672BA853A500A25206 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A351662BA853A500A25206 /* PlaySound.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		814296892BA1A97E007409E6 /* ReelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelView.swift; sourceTree = "<group>"; };
 		81A351622BA1AFAC00A25206 /* ReelWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelWithImage.swift; sourceTree = "<group>"; };
 		81A351642BA44FE600A25206 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		81A351662BA853A500A25206 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				814296842BA1A19A007409E6 /* ShadowModifier.swift */,
 				814296862BA1A5F3007409E6 /* Extension.swift */,
+				81A351662BA853A500A25206 /* PlaySound.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81A351652BA44FE600A25206 /* InfoView.swift in Sources */,
+				81A351672BA853A500A25206 /* PlaySound.swift in Sources */,
 				8142968A2BA1A97E007409E6 /* ReelView.swift in Sources */,
 				81A351632BA1AFAC00A25206 /* ReelWithImage.swift in Sources */,
 				814296872BA1A5F3007409E6 /* Extension.swift in Sources */,

@@ -25,7 +25,7 @@ struct ReelWithImage: View {
                 
                         withAnimation(.easeOut(duration: randomDouble)) {
                             self.animatingSymbol = true
-                       
+                            playSound(sound: "riseup", type: "mp3")
                     }
                     
                 }

@@ -31,6 +31,7 @@ struct ContentView: View {
         reels = reels.map({ _ in
             Int.random(in: 0...symbols.count - 1)
         })
+        playSound(sound: "spin", type: "mp3")
         
     }
     //Check the winings
@@ -41,6 +42,8 @@ struct ContentView: View {
             //new heighSocre
             if coins > highScore{
                 newHighScore()
+            }else{
+                playSound(sound: "win", type: "mp3")
             }
         }
         else{
@@ -54,6 +57,7 @@ struct ContentView: View {
     func newHighScore(){
         highScore = coins
         UserDefaults.standard.set(highScore, forKey: "HighScore")
+        playSound(sound: "high-score", type: "mp3")
     }
     func playerLoses(){
         coins -= betamount
@@ -63,17 +67,20 @@ struct ContentView: View {
         betamount = 10
         isActiveBet20 = false
         isActiveBet10 = true
+        playSound(sound: "casino-chips", type: "mp3")
     }
     func activateBet20(){
         betamount = 20
         isActiveBet20 = true
         isActiveBet10 = false
+        playSound(sound: "casino-chips", type: "mp3")
     }
     //GAme overe
     func isGameOver(){
         if coins <= 0 {
             //Show modal windows
             showModel = true
+            playSound(sound: "game-over", type: "mp3")
         }
     }
     func resetGame(){
@@ -81,6 +88,7 @@ struct ContentView: View {
         highScore = 0
         coins = 100
         activateBet10()
+        playSound(sound: "chimeup", type: "mp3")
     }
     //MARK: - BODY
     var body: some View {
