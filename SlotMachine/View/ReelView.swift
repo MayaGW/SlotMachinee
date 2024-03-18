@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ReelView: View {
+ 
+     
     var body: some View {
         Image(.gfxReel)
             .resizable()
             .modifier(ImageModifier())
-          
+             
+            
+            
     }
 }
 
-#Preview(traits: .fixedLayout(width: 220, height: 220)) {
-    ReelView()
-}
+ 

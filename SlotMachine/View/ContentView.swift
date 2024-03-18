@@ -19,6 +19,9 @@ struct ContentView: View {
     @State private var isActiveBet10: Bool = true
     @State private var isActiveBet20: Bool = false
     @State private var showModel : Bool = false
+    @State private var animatingSymbol: Bool = false
+    @State private var animationModel: Bool = false
+    
     //MARK: - Functioms
     //Spin the reels
     func spinReels(){
@@ -120,19 +123,36 @@ struct ContentView: View {
                 //SLOTMACHINE
                 VStack(alignment: .center , spacing: 0){
                     //Reel 1
-                    ReelWithImage(imageName: symbols[reels[0]])
+                    ReelWithImage(animatingSymbol: $animatingSymbol, imageName: symbols[reels[0]], randomDouble: Double.random(in: 0.5...0.7))
+                    
+                    
                     HStack(alignment: .center, spacing: 0){
                         //Reel2
-                        ReelWithImage(imageName: symbols[reels[1]])
+                        ReelWithImage(animatingSymbol: $animatingSymbol, imageName: symbols[reels[1]], randomDouble:Double.random(in: 0.7...0.9))
+                          
                         Spacer()
                         //Reel3
-                        ReelWithImage(imageName: symbols[reels[2]])
+                        ReelWithImage(animatingSymbol:$animatingSymbol, imageName: symbols[reels[2]], randomDouble: Double.random(in: 0.9...1.1))
+                        
                     }.frame(maxWidth: 500)
                     //Spin Button
                     
                     Button(action: {
-                       //Spin the reels
+                       //1. set the default state no animation
+                        
+                        withAnimation{
+                            self.animatingSymbol = false
+                        }
+                        print("helll")
                         spinReels()
+                        //Trigger animation after changing the symbol
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                               withAnimation {
+                                   self.animatingSymbol = true
+                               }
+                     
+                        }
+                        print("helll2")
                         checkWinings()
                         isGameOver()
                     }, label: {
@@ -173,14 +193,16 @@ struct ContentView: View {
                         
                 Image(.gfxCasinoChips)
                     .resizable()
+                    .offset(x: isActiveBet20 ? 0 : 20)
                     .opacity(isActiveBet20  ? 1 : 0)
-                     
+                    
                     .modifier(CasinoShipsModifier())
                     }//INNER HSTACK   
                     //BET 10
                     HStack (alignment:.center, spacing: 10){
                         Image(.gfxCasinoChips)
                             .resizable()
+                            .offset(x: isActiveBet10 ? 0 : -20)
                             .opacity(isActiveBet10 ? 1  : 0)
                             .modifier(CasinoShipsModifier())
                         
@@ -261,6 +283,7 @@ struct ContentView: View {
                             
                             Button(action: {
                                 showModel = false
+                                animationModel = false
                                 coins = 100
                                 
                             }, label: {
@@ -283,6 +306,12 @@ struct ContentView: View {
                     .background(.white)
                     .cornerRadius(20)
                     .shadow(color: .colorTransparentBlack, radius: 6, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 8)
+                    .opacity( animationModel  ? 1 : 0)
+                    .offset(y: animationModel  ? 0 : -100 )
+                    .animation(Animation.spring(response: 0.6, dampingFraction: 1, blendDuration: 1))
+                    .onAppear(perform: {
+                        self.animationModel = true
+                    })
                 }
             }
         }//ZSTACK
